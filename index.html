@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invoice Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="invoice-form">
+      <h1>Create Invoice</h1>
+
+      <!-- Invoice Details -->
+      <section>
+        <h2>Invoice Info</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="invoiceNumber">Invoice #</label>
+            <input type="text" id="invoiceNumber" placeholder="e.g., INV-001" />
+          </div>
+          <div class="form-group">
+            <label for="invoiceDate">Date</label>
+            <input type="date" id="invoiceDate" />
+          </div>
+          <div class="form-group">
+            <label for="dueDate">Due Date</label>
+            <input type="date" id="dueDate" />
+          </div>
+        </div>
+      </section>
+
+      <!-- From / To Details -->
+      <section class="companies">
+        <div class="company-info">
+          <h2>From (Your Company)</h2>
+          <div class="form-group">
+            <label for="fromName">Name</label>
+            <input type="text" id="fromName" placeholder="Your Company Name" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fromEmail">Email</label>
+              <input type="email" id="fromEmail" placeholder="you@example.com" />
+            </div>
+            <div class="form-group">
+              <label for="fromPhone">Phone</label>
+              <input type="tel" id="fromPhone" placeholder="+1 234 567 890" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fromAddress">Address</label>
+            <textarea id="fromAddress" rows="2" placeholder="Street, City, ZIP"></textarea>
+          </div>
+        </div>
+
+        <div class="company-info">
+          <h2>Bill To (Client)</h2>
+          <div class="form-group">
+            <label for="toName">Name</label>
+            <input type="text" id="toName" placeholder="Client Name" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="toEmail">Email</label>
+              <input type="email" id="toEmail" placeholder="client@example.com" />
+            </div>
+            <div class="form-group">
+              <label for="toPhone">Phone</label>
+              <input type="tel" id="toPhone" placeholder="+1 234 567 890" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="toAddress">Address</label>
+            <textarea id="toAddress" rows="2" placeholder="Street, City, ZIP"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- Items Table -->
+      <section>
+        <h2>Items</h2>
+        <div class="items-table-wrapper">
+          <table id="itemsTable">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Qty</th>
+                <th>Rate ($)</th>
+                <th>Amount ($)</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="itemsBody">
+              <!-- dynamic rows -->
+            </tbody>
+          </table>
+        </div>
+        <button type="button" id="addItemBtn" class="btn btn-secondary">+ Add Item</button>
+      </section>
+
+      <!-- Discount / Tax / Notes -->
+      <section>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="discount">Discount (%)</label>
+            <input type="number" id="discount" min="0" max="100" step="0.01" value="0" />
+          </div>
+          <div class="form-group">
+            <label for="tax">Tax (%)</label>
+            <input type="number" id="tax" min="0" max="100" step="0.01" value="0" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="notes">Notes / Terms</label>
+          <textarea id="notes" rows="3" placeholder="Payment terms, thank you note, etc."></textarea>
+        </div>
+        <div class="totals-preview">
+          <span>Subtotal: $<strong id="subtotal">0.00</strong></span>
+          <span>Discount: $<strong id="discountAmount">0.00</strong></span>
+          <span>Tax: $<strong id="taxAmount">0.00</strong></span>
+          <span>Total: $<strong id="total">0.00</strong></span>
+        </div>
+      </section>
+
+      <!-- Action Buttons -->
+      <div class="actions">
+        <button type="button" id="generateBtn" class="btn btn-primary">Generate Invoice</button>
+        <button type="button" id="printBtn" class="btn btn-outline">Print / Save PDF</button>
+        <button type="button" id="resetBtn" class="btn btn-ghost">Reset</button>
+      </div>
+    </div>
+
+    <!-- Invoice Preview (hidden until generate) -->
+    <div id="invoicePreview" class="invoice-preview" style="display: none;">
+      <!-- preview will be injected by JS -->
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
